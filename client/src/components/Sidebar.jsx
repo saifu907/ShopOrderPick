@@ -32,14 +32,14 @@ function Sidebar({setShoplogin,shoplogin}) {
 
       <div className='bg-light text-white p-0 vh-100 sticky-top d-flex flex-column  justify-content-center  sidebarul over  border-end  shadow ' >
         <div className="flex-grow-1 p-2">
-          <ul style={{listStyle:'none',padding:'0'}} className='d-flex flex-column  justify-content-center align-items-center'>
+          <ul style={{listStyle:'none',padding:'0'}} className='d-flex flex-column  justify-content-center align-items-center align-items-sm-stretch'>
           
               <li >
-              <NavLink  className='rounded-5'activeClassName="active"  to={'/'}><i class="fa-regular fa-circle"></i> <span className="d-none d-sm-inline">home</span></NavLink>
+              <NavLink  className='rounded-5 justify-content-sm-start justify-content-sm-start'activeClassName="active"  to={'/'}><i class="fa-regular fa-circle"></i> <span className="d-none d-sm-inline">home</span></NavLink>
             </li>
             {!shoplogin?( <>
             <li >
-              <NavLink   className='rounded-5' to={'/WishCart'}>{
+              <NavLink   className='rounded-5 justify-content-sm-start ' to={'/WishCart'}>{
                 <div>
                     <i class="fa-solid fa-heart" ></i>
                       <MDBBadge className='px-1' style={{marginLeft:'-15px'}} color='danger' notification pill>
@@ -50,7 +50,7 @@ function Sidebar({setShoplogin,shoplogin}) {
                  } <span className="d-none d-sm-inline">Wishlist</span></NavLink>
             </li>
             <li >
-              <NavLink to={'/cart'}  className='rounded-5'>{
+              <NavLink to={'/cart'}  className='rounded-5 justify-content-sm-start'>{
                    <div>
                     <i class="fa-solid fa-cart-shopping"></i>
                       <MDBBadge className='px-1' style={{marginLeft:'-15px'}} color='danger' notification pill>
@@ -62,15 +62,15 @@ function Sidebar({setShoplogin,shoplogin}) {
               <sapn className="d-none d-sm-inline">Cart</sapn></NavLink>
             </li>
             <li>
-              <NavLink to={'/orders'} className='rounded-5'><i class="fa-solid fa-list-check"></i> <span className="d-none d-sm-inline">Orders</span></NavLink>
+              <NavLink to={'/orders'} className='rounded-5 justify-content-sm-start'><i class="fa-solid fa-list-check"></i> <span className="d-none d-sm-inline">Orders</span></NavLink>
             </li>
           
             </>): <>
             <li>
-              <NavLink to={'/shoporder'} className='rounded-5'><i class="fa-solid fa-list-check"></i><span className="d-none d-sm-inline">Orders</span></NavLink>
+              <NavLink to={'/shoporder'} className='rounded-5 justify-content-sm-start'><i class="fa-solid fa-list-check"></i><span className="d-none d-sm-inline">Orders</span></NavLink>
             </li>
             <li>
-              <NavLink to={'/Profile'} className='rounded-5'><i class="fa-solid fa-list-check"></i><span className="d-none d-sm-inline">Profile</span></NavLink>
+              <NavLink to={'/Profile'} className='rounded-5 justify-content-sm-start'><i class="fa-solid fa-list-check"></i><span className="d-none d-sm-inline">Profile</span></NavLink>
             </li>
             
 
@@ -78,7 +78,7 @@ function Sidebar({setShoplogin,shoplogin}) {
             </>
             }
             <li>
-              <NavLink to={'/chats'} className='rounded-5'><i class="fa-solid fa-list-check"></i><span className="d-none d-sm-inline">Chats</span></NavLink>
+              <NavLink to={'/chats'} className='rounded-5 justify-content-sm-start'><i class="fa-solid fa-list-check"></i><span className="d-none d-sm-inline">Chats</span></NavLink>
             </li>
           </ul>
         </div>
