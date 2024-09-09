@@ -74,11 +74,11 @@ function AllProducts() {
   
   
   return (
-    <div className=' my-3 ms-3'>
+    <div className=' my-3 '>
     <div className="d-flex align-items-center justify-content-between">
-      <h1>Explore</h1>
-      <div className="pe-5 me-5 d-flex align-items-center justify-content-center gap-2">
-         <i class="fa-solid fa-magnifying-glass fa-xl"></i><Form.Control className='pe-5' style={{width:'300px',height:'40px'}} onChange={e=>setSearchKey(e.target.value)} type="text" placeholder="Search" />
+      <h1 className='pe-3'>Explore</h1>
+      <div className="pe-5 me-5 d-flex align-items-center justify-content-center gap-2 ">
+         <i class="fa-solid fa-magnifying-glass fa-xl"></i><Form.Control className='pe-5' style={{width:'250px',height:'40px'}} onChange={e=>setSearchKey(e.target.value)} type="text" placeholder="Search" />
          
          </div>
     </div>
@@ -148,10 +148,10 @@ function AllProducts() {
           </div>
 
         </div> */}
-        <div className='row p-2 m-0' >
+        <div className='row p-2  m-0' >
         {allProducts.length>0?allProducts.slice().reverse().map((products,index)=>(
           
-        <div className="col-4 p-2 m-0" key={index}>
+        <div className="col-sm-4  p-2 m-0" key={index}>
           <MDBCard background='dark' className='text-dark overflow-hidden cards' style={{height:'250px'}} >
           
                 

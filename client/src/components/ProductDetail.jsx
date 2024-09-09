@@ -89,11 +89,11 @@ const fetchProductDetails = async () => {
 {product && (
     
     <div className='row m-0'>
-        <div className='col-6  '>
+        <div className='col-sm-6 col-12 '>
             <img src={`${SERVER_URL}/uploads/${product?.productimage}`} style={{objectFit:'contain',width:'100%'}}  alt="" />
     
         </div>
-        <div className='col-6 mt-5 d-flex flex-column gap-3'>
+        <div className='col-sm-6 mt-5 d-flex flex-column gap-3'>
             <h3>{product?.label}</h3>
             <h3>Rs. {product?.price}</h3>
     
@@ -130,7 +130,7 @@ const fetchProductDetails = async () => {
         <h3 className='p-3'>Explore Shop</h3>
     {allProduct.length>0?allProduct.slice().reverse().map((products,index)=>(
     
-                  <div className="col-4  p-2 " key={index}>
+                  <div className="col-sm-4 col-10  p-2 " key={index}>
                     <MDBCard background='dark' className='text-dark overflow-hidden cards' style={{height:'250px'}} >
     
     

@@ -86,7 +86,7 @@ function ShopProducts() {
       </div>
     {allProduct.length>0?allProduct.slice().reverse().map((products,index)=>(
     
-                  <div className="col-4  p-2 " key={index}>
+                  <div className="col-sm-4  p-2 " key={index}>
                     <MDBCard background='dark' className='text-dark overflow-hidden cards' style={{height:'250px'}} >
     
     

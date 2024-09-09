@@ -81,7 +81,7 @@ function Shoporder() {
   
   return (
     <>
-     <div className="m-0">
+     <div className="m-0 table-responsive">
        <table className='table '>
             <thead >
             <tr>

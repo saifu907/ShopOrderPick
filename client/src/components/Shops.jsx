@@ -35,10 +35,10 @@ function Shops() {
   return (
     <div className="container ">
     <div className="d-flex align-items-center justify-content-between">
-      <h1 className="">All Shops</h1>
+      <h1 className="pe-3">All Shops</h1>
      
    <div className="pe-5 me-5 d-flex align-items-center justify-content-center gap-2">
-   <i class="fa-solid fa-magnifying-glass fa-xl"></i><Form.Control className='pe-5' style={{width:'300px',height:'40px'}} onChange={e=>setSearchKey(e.target.value)} type="text" placeholder="Search" />
+   <i class="fa-solid fa-magnifying-glass fa-xl"></i><Form.Control className='pe-5' style={{width:'250px',height:'40px'}} onChange={e=>setSearchKey(e.target.value)} type="text" placeholder="Search" />
    
    </div>
     </div>

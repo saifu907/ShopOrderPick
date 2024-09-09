@@ -196,7 +196,7 @@ const getShopProducts =async()=>{
             
             
           {allShopProducts.length>0?allShopProducts.slice().reverse().map((products,index)=>(
-            <div className="col-3" key={index}>
+            <div className="col-sm-3 " key={index}>
             <MDBCard style={{height:'400px'}}>
       <MDBRipple  rippleColor='light' rippleTag='div' className='bg-image hover-overlay'>
         <MDBCardImage style={{height:'200px',objectFit:'fill'}}  src={`${SERVER_URL}/uploads/${products.productimage}`} fluid alt='...' />

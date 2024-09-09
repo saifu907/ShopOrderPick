@@ -41,7 +41,7 @@ function WishCart() {
      {
      
        wishlistArray.length>0?wishlistArray.slice().reverse().map((product,index)=>(
-         <div key={index} className='col-3 g-4'>
+         <div key={index} className='col-sm-3 col-12 g-4'>
      <MDBCard style={{height:'400px'}} c>
      <div className='position-absolute fixed-top d-flex  justify-content-end align-items-start'>
                     <MDBBtn onClick={()=>dispatch(removeFromWishlist(product._id))}  className='bg-transparent shadow-none '  color=''>
@@ -51,7 +51,7 @@ function WishCart() {
 
                     </div>
        <MDBRipple  rippleColor='light' rippleTag='div' className='bg-image hover-overlay h-100'>
-         <MDBCardImage style={{height:'200px',objectFit:'fill'}} src={`${SERVER_URL}/uploads/${product.productimage}`} alt={product.label} fluid />
+         <MDBCardImage style={{height:'200px',objectFit:'fit'}} src={`${SERVER_URL}/uploads/${product.productimage}`} alt={product.label} fluid />
          <a>
            <div className='mask' style={{backgroundColor:'rgba(251, 251, 251, 0.15)' }}></div>
          </a>
@@ -67,8 +67,8 @@ function WishCart() {
          </div>
      </MDBCard>   
      </div>
-       )) : <div className="w-100 d-flex flex-column justify-content center align-items-center">
-       <img src="https://i.pinimg.com/564x/f6/e4/64/f6e464230662e7fa4c6a4afb92631aed.jpg" alt="" />
+       )) : <div className=" d-flex flex-column justify-content center align-items-center ">
+       <img style={{objectFit:'cover',maxHeight:'300px'}}  src="https://i.pinimg.com/564x/f6/e4/64/f6e464230662e7fa4c6a4afb92631aed.jpg" alt="" />
        <Link to={'/'}className='btn btn-warning rounded'>Back to Home</Link>
      </div>
      }

@@ -45,11 +45,11 @@ function Home() {
   
 
       <div className='row m-0'>
-    <div className="col-3 p-0 m-0">
+    <div className="col-sm-3 col-2  p-0 m-0">
       
     <Sidebar setShoplogin={setShoplogin} shoplogin={shoplogin} />
     </div>
-<div className="col-9 m-0 p-0">
+<div className="col-sm-9 col-10 m-0 p-0">
           
 
       <Routes>

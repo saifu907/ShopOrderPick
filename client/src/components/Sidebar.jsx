@@ -30,16 +30,16 @@ function Sidebar({setShoplogin,shoplogin}) {
     
 
 
-      <div className='bg-light text-white p-3 vh-100 sticky-top d-flex flex-column  justify-content- sidebarul over  border-end  shadow ' >
-        <div className="flex-grow-1">
-          <ul style={{listStyle:'none'}} className='d-flex flex-column  '>
+      <div className='bg-light text-white p-0 vh-100 sticky-top d-flex flex-column  justify-content-center  sidebarul over  border-end  shadow ' >
+        <div className="flex-grow-1 p-2">
+          <ul style={{listStyle:'none',padding:'0'}} className='d-flex flex-column  justify-content-center align-items-center'>
           
               <li >
-              <NavLink  className='rounded-pill 'activeClassName="active"  to={'/'}><i class="fa-regular fa-circle"></i> home</NavLink>
+              <NavLink  className='rounded-5'activeClassName="active"  to={'/'}><i class="fa-regular fa-circle"></i> <span className="d-none d-sm-inline">home</span></NavLink>
             </li>
             {!shoplogin?( <>
             <li >
-              <NavLink   className='rounded-pill' to={'/WishCart'}>{
+              <NavLink   className='rounded-5' to={'/WishCart'}>{
                 <div>
                     <i class="fa-solid fa-heart" ></i>
                       <MDBBadge className='px-1' style={{marginLeft:'-15px'}} color='danger' notification pill>
@@ -47,10 +47,10 @@ function Sidebar({setShoplogin,shoplogin}) {
           
                       </MDBBadge>
                       </div>
-                 } Wishlist</NavLink>
+                 } <span className="d-none d-sm-inline">Wishlist</span></NavLink>
             </li>
             <li >
-              <NavLink to={'/cart'}  className='rounded-pill'>{
+              <NavLink to={'/cart'}  className='rounded-5'>{
                    <div>
                     <i class="fa-solid fa-cart-shopping"></i>
                       <MDBBadge className='px-1' style={{marginLeft:'-15px'}} color='danger' notification pill>
@@ -59,18 +59,18 @@ function Sidebar({setShoplogin,shoplogin}) {
                       </MDBBadge>
                       </div>
                  }
-              Cart</NavLink>
+              <sapn className="d-none d-sm-inline">Cart</sapn></NavLink>
             </li>
             <li>
-              <NavLink to={'/orders'} className='rounded-pill'><i class="fa-solid fa-list-check"></i> Orders</NavLink>
+              <NavLink to={'/orders'} className='rounded-5'><i class="fa-solid fa-list-check"></i> <span className="d-none d-sm-inline">Orders</span></NavLink>
             </li>
           
             </>): <>
             <li>
-              <NavLink to={'/shoporder'} className='rounded-pill'><i class="fa-solid fa-list-check"></i>Orders</NavLink>
+              <NavLink to={'/shoporder'} className='rounded-5'><i class="fa-solid fa-list-check"></i><span className="d-none d-sm-inline">Orders</span></NavLink>
             </li>
             <li>
-              <NavLink to={'/Profile'} className='rounded-pill'><i class="fa-solid fa-list-check"></i>Profile</NavLink>
+              <NavLink to={'/Profile'} className='rounded-5'><i class="fa-solid fa-list-check"></i><span className="d-none d-sm-inline">Profile</span></NavLink>
             </li>
             
 
@@ -78,7 +78,7 @@ function Sidebar({setShoplogin,shoplogin}) {
             </>
             }
             <li>
-              <NavLink to={'/chats'} className='rounded-pill'><i class="fa-solid fa-list-check"></i>Chats</NavLink>
+              <NavLink to={'/chats'} className='rounded-5'><i class="fa-solid fa-list-check"></i><span className="d-none d-sm-inline">Chats</span></NavLink>
             </li>
           </ul>
         </div>

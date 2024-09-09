@@ -21,7 +21,7 @@ function UserLanding() {
 
   return (
 <>
-    <MDBTabs className='mb-3 d-flex justify-content-center align-items-center'>
+    <MDBTabs className=' d-flex justify-content-center align-items-center '>
         <MDBTabsItem>
           <MDBTabsLink onClick={() => handleBasicClick('tab1')} active={basicActive === 'tab1'}>
             Shops
