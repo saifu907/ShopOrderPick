@@ -68,7 +68,7 @@ function WishCart() {
      </MDBCard>   
      </div>
        )) : <div className=" d-flex flex-column justify-content center align-items-center ">
-       <img style={{objectFit:'cover',maxHeight:'300px'}}  src="https://i.pinimg.com/564x/f6/e4/64/f6e464230662e7fa4c6a4afb92631aed.jpg" alt="" />
+       <img style={{objectFit:'cover',maxHeight:'200px'}}  src="https://i.pinimg.com/564x/f6/e4/64/f6e464230662e7fa4c6a4afb92631aed.jpg" alt="" />
        <Link to={'/'}className='btn btn-warning rounded'>Back to Home</Link>
      </div>
      }
