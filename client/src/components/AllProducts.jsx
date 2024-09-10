@@ -75,12 +75,14 @@ function AllProducts() {
   
   return (
     <div className=' my-3 '>
-    <div className="d-flex align-items-center justify-content-between">
-      <h1 className='pe-3'>Explore</h1>
-      <div className="pe-5 me-5 d-flex align-items-center justify-content-center gap-2 ">
-         <i class="fa-solid fa-magnifying-glass fa-xl"></i><Form.Control className='pe-5' style={{width:'250px',height:'40px'}} onChange={e=>setSearchKey(e.target.value)} type="text" placeholder="Search" />
-         
-         </div>
+    <div className="d-flex flex-column flex-md-row align-items-center justify-content-between">
+      
+      <h1 className="pe-3 mb-3 mb-md-0">All Shops</h1>
+      <div className="  d-flex align-items-center justify-content-center gap-2 mb-3 mb-md-0">
+   <i class="fa-solid fa-magnifying-glass fa-xl"></i>
+   <Form.Control className='pe-5' style={{width:'250px',height:'40px'}} onChange={e=>setSearchKey(e.target.value)} type="text" placeholder="Search" />
+   
+   </div>
     </div>
       <div className='container mt-4 m-0'>
        
