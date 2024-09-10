@@ -11,7 +11,10 @@ import { MDBBadge, MDBIcon,MDBBtn,
   MDBModalTitle,
   MDBModalBody,
   MDBInput,
-  MDBModalFooter } from 'mdb-react-ui-kit';
+  MDBModalFooter,MDBValidation,
+  MDBValidationItem, MDBRow,MDBCol} from 'mdb-react-ui-kit';
+  import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 import { loginAPI, registerAPI, registerShopAPI } from '../Services/allAPI';
 
 function Navbars({setShoplogin}) {
@@ -51,8 +54,10 @@ function Navbars({setShoplogin}) {
     sessionStorage.removeItem("username")
     sessionStorage.removeItem("shopname")
     setIsLoggedIn(false)
+    toast.info(`You have been logged out`)
     navigate('/')
-    window.location.reload();
+    
+  setShoplogin(false)
   }
 
 
@@ -65,7 +70,7 @@ function Navbars({setShoplogin}) {
   const signIn =async () => {
     const {emailuser,password}=userData
     if (!emailuser||!password) {
-      alert('Please enter')
+      toast.info('Please fill all fields')
     }else{
       try{
         const result =await loginAPI({emailuser,password})
@@ -84,12 +89,9 @@ function Navbars({setShoplogin}) {
           sessionStorage.setItem('token',result.data.token)
 
 
-          }else{
-            console.log('kkkk');
-            
           }
           
-          alert(`Successfully logged in${result}`)
+          toast.success(`Login successful`)
           
          setloggedIn(true)
          setIsLoggedIn(true)
@@ -100,9 +102,11 @@ function Navbars({setShoplogin}) {
             navigate('/')
 
           }, 2000)
+        }else{
+            toast.error('User not Found')          
         }
       }catch(err){
-        alert(`Could not register:error:${err}`)
+        toast.error(`Could not login: error: ${err}`)
       }
   }
   };
@@ -110,18 +114,21 @@ function Navbars({setShoplogin}) {
   const register =async () => {
       const {username,email,password}=userData
       if (!email||!password||!username) {
-        alert('Please enter')
+      toast.info('Please fill all fields')
+
       }else{
         try{
           const result =await registerAPI({username,email,password});
           console.log(result);
           if(result.status===200){
-            alert('Register Success1')
             setUserdata({username:'',email:'',password:''})
             setloggedIn(true)
+            toast.success('User Registered Successfully')
+          }else{
+            toast.error('User Already Exists...')
           }
         }catch(err){
-          alert(`Could not register:error:${err}`)
+          toast.error(`Could not register:${err}`)
         }
     }
   };
@@ -129,18 +136,22 @@ function Navbars({setShoplogin}) {
   const registertoShop =async () => {
     const {username,email,password,shopname,shopaddress}=userData
     if (!email||!password||!username||!shopname||!shopaddress) {
-      alert('Please enter')
+      toast.info('Please fill all fields')
+      
     }else{
       try{
         const result =await registerShopAPI({username,email,password,shopname,shopaddress});
         console.log(result);
         if(result.status===200){
-          alert('Register Success')
+          
           resetForm()
           setloggedIn(true)
+          toast.success('User Registered Successfully')
+        }else{
+          toast.error('User Already Exists...')
         }
       }catch(err){
-        alert(`Could not register:error:${err}`)
+        toast.error(`Could not register:error:${err}`)
       }
   }
 };
@@ -148,9 +159,13 @@ function Navbars({setShoplogin}) {
     if (loggedIn) {
       return(
       <>
-      <MDBInput name="emailuser" onChange={handleInputChange} value={userData.emailuser} className='mt-3'  label="email or username"  type="text" /> 
-      <MDBInput name="password" onChange={handleInputChange}  value={userData.password} className='mt-3' label="password"  type="password" />
+      <MDBRow tag="form">
+      <MDBCol >
+      <MDBInput name="emailuser" required onChange={handleInputChange} value={userData.emailuser} className='mt-3'  label="email or username"  type="text" /> 
+      <MDBInput name="password" required onChange={handleInputChange}  value={userData.password} className='mt-3' label="password"  type="password" />
       <MDBBtn onClick={signIn}  className='w-100 p-2 mt-3 '>Sign In</MDBBtn>
+      </MDBCol>
+      </MDBRow >
       </>
       )
 
@@ -160,15 +175,19 @@ function Navbars({setShoplogin}) {
     else if (isShopOwner) {
       return (
         <>
-          <MDBInput name="username" onChange={handleInputChange} value={userData.username} className='mt-3'   label="enter username"  type="text" /> 
-          <MDBInput name="email" onChange={handleInputChange } value={userData.email} className='mt-3'  label="enter email"  type="text" /> 
-          <MDBInput name="shopname" onChange={handleInputChange} value={userData.shopname} label="Shop Name" type="text" className='mt-3' />
-          <MDBInput name="shopaddress" onChange={handleInputChange} value={userData.shopaddress} label="Shop Address" type="text" className='mt-3' />
-          <MDBInput name="password" onChange={handleInputChange}  value={userData.password} className='mt-3' label="password"  type="password" />
-          <MDBInput name="" label="Confirm Password" type="password" className='my-3' />
+        <MDBRow tag="form">
+        <MDBCol >
+          <MDBInput name="username" required  onChange={handleInputChange} value={userData.username} className='mt-3'   label="enter username"  type="text" /> 
+          <MDBInput name="email" required onChange={handleInputChange } value={userData.email} className='mt-3'  label="enter email"  type="text" /> 
+          <MDBInput name="shopname" required onChange={handleInputChange} value={userData.shopname} label="Shop Name" type="text" className='mt-3' />
+          <MDBInput name="shopaddress" required onChange={handleInputChange} value={userData.shopaddress} label="Shop Address" type="text" className='mt-3' />
+          <MDBInput name="password"  required onChange={handleInputChange}  value={userData.password} className='my-3' label="password"  type="password" />
+
           <MDBBtn onClick={registertoShop}  className='w-100 p-2 mb-3 '>Register</MDBBtn>
+          </MDBCol>
+      </MDBRow >
           {isShopOwner&&(
-                      <p>User?<button  onClick={()=>setIsShopOwner(false)} className="btn-primary">Registor</button></p>)
+                      <p className='text-secondary'>User? <button  onClick={()=>setIsShopOwner(false)} className="btn btn-primary rounded-pill">Registor</button></p>)
         }
 
 
@@ -178,13 +197,17 @@ function Navbars({setShoplogin}) {
       return(
 
       <>
-          <MDBInput name="email" onChange={handleInputChange} value={userData.email} className='mt-3'  label="enter email"  type="text" /> 
-          <MDBInput name="username" onChange={handleInputChange} value={userData.username} className='mt-3'   label="enter username"  type="text" /> 
-          <MDBInput name="password" onChange={handleInputChange}  value={userData.password} className='mt-3' label="password"  type="password" />
-          <MDBInput name="" label="Confirm Password" type="password" className='my-3' />
+       <MDBRow tag="form">
+       <MDBCol >
+          <MDBInput name="email" required onChange={handleInputChange} value={userData.email} className='mt-3'  label="enter email"  type="text" /> 
+          <MDBInput name="username" required onChange={handleInputChange} value={userData.username} className='mt-3'   label="enter username"  type="text" /> 
+          <MDBInput name="password" required onChange={handleInputChange}  value={userData.password} className='my-3' label="password"  type="password" />
           <MDBBtn onClick={register}  className='w-100 p-2 mb-3 '>Register</MDBBtn>
+          </MDBCol>
+          </MDBRow >
+          
           {!isShopOwner&&(
-                      <p>ShopOwner?<button  onClick={()=>setIsShopOwner(true)} className="btn-primary">Registor</button></p>)
+                      <p className='text-secondary'>ShopOwner? <button  onClick={()=>setIsShopOwner(true)}  className="btn btn-primary rounded-pill">Registor</button></p>)
         }
 
 
@@ -202,8 +225,7 @@ function Navbars({setShoplogin}) {
 
   return (
     <>
-      
-        
+      <ToastContainer />
           <div className="d-flex align-items-center justify-content-center mx-3">
             
                 {isloggedIn?
@@ -219,7 +241,7 @@ function Navbars({setShoplogin}) {
           <MDBModalContent>
             
             <MDBModalBody>
-              <div className="mt-4 d-flex justify-content-between mt-4 ">
+              <div className="mt-4 d-flex justify-content-between ">
                 <MDBBtn onClick={() =>{ setloggedIn(true); resetForm();setIsShopOwner(false)}} color={loggedIn?'primary':'secondary'}  className='w-100 p-3 mx-2'>
                         LOGIN
                       </MDBBtn>
@@ -227,8 +249,7 @@ function Navbars({setShoplogin}) {
                         REGISTOR
                       </MDBBtn>
               </div>
-              <div className='my-5 '>
-              
+              <div className='my-3'>
                 {renderFields()}
           
           </div>

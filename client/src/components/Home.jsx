@@ -19,6 +19,8 @@ import ProductDetail from './ProductDetail'
 import Profile from './Profile'
 import ShopProducts from './ShopProducts'
 import Chats from './Chats'
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 function Home() {
 
     const [shoplogin, setShoplogin] = useState(false)

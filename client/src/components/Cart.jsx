@@ -8,6 +8,8 @@ import { SERVER_URL } from '../Services/server_url'
 import { emptyCart, removeFromCart,updateCart } from '../features/cartSlice'
 import { addtoOrderList } from '../features/orderSlice'
 import { addOrderAPI } from '../Services/allAPI'
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -76,20 +78,19 @@ function Cart() {
           if(result.status === 200){
 
             dispatch(emptyCart());
-            navigate('/');
+            toast.success('Order Placed')
+
 
           }else{
-            alert('error'+result.response.data)
+            toast.error('User is not Logged in')
           }
 
 
   }catch(e){
+    toast.error(`Error ${e.message}`)
 
   }
     
-    
-    // dispatch(emptyCart())
-    // navigate('/')
 
   }
  
@@ -119,6 +120,7 @@ function Cart() {
   }
   return (
   <>
+  <ToastContainer/>
 
     {
     cartArray.length>0?
