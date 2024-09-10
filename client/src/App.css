@@ -144,13 +144,15 @@ align-items: center;
 justify-content: center;
 
 }
-.sidebarul li a i{
+.sidebarul li span{
     
-    padding-right:10px ;
-    
+   padding-left: 8px;
 
 }
+
+
 .sidebarul li a:hover{
+
     background-color:rgb(187, 197, 210);
     transition: 0.4s ease;
 
