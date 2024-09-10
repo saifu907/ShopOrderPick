@@ -104,7 +104,7 @@ function Sidebar({setShoplogin,shoplogin}) {
             </li>
           </ul>
         </div>
-        <div className="mb-5"><Navbars setShoplogin={setShoplogin} /></div>
+        <div className="mb-5 pb-5"><Navbars setShoplogin={setShoplogin} /></div>
 
       </div>
   )
