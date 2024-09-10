@@ -70,7 +70,7 @@ function Sidebar({setShoplogin,shoplogin}) {
               <NavLink to={'/shoporder'} className='rounded-5 justify-content-sm-start'><i class="fa-solid fa-list-check"></i><span className="d-none d-sm-inline">Orders</span></NavLink>
             </li>
             <li>
-              <NavLink to={'/Profile'} className='rounded-5 justify-content-sm-start'><i class="fa-solid fa-list-check"></i><span className="d-none d-sm-inline">Profile</span></NavLink>
+              <NavLink to={'/Profile'} className='rounded-5 justify-content-sm-start'><i class="fa-solid fa-user"></i><span className="d-none d-sm-inline">Profile</span></NavLink>
             </li>
             
 
@@ -78,7 +78,7 @@ function Sidebar({setShoplogin,shoplogin}) {
             </>
             }
             <li>
-              <NavLink to={'/chats'} className='rounded-5 justify-content-sm-start'><i class="fa-solid fa-list-check"></i><span className="d-none d-sm-inline">Chats</span></NavLink>
+              <NavLink to={'/chats'} className='rounded-5 justify-content-sm-start'><i class="fa-regular fa-comment-dots"></i><span className="d-none d-sm-inline">Chats</span></NavLink>
             </li>
           </ul>
         </div>
