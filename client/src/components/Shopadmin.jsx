@@ -21,6 +21,8 @@ import {
     MDBBtn,
     MDBRipple
   } from 'mdb-react-ui-kit';
+  import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 import { addProductAPI, deleteProductAPI, getShopProductAPI } from '../Services/allAPI';
 import { SERVER_URL } from '../Services/server_url';
 
@@ -86,7 +88,7 @@ const getShopProducts =async()=>{
   const handleAddProduct=async()=>{
     const {productLabel,caption,image,price}=productModal
     if(!productLabel||!caption||!image||!price){
-      alert(`Product not available`)
+      toast.info(`Fill All Fields`)
     }else{
 
       const reqBody=new FormData()

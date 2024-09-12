@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { MDBInput,MDBTextArea,MDBBtn } from 'mdb-react-ui-kit';
 import { editShopProfileAPI, getShopProfileAPI } from '../Services/allAPI';
 import { SERVER_URL } from '../Services/server_url';
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 function Profile() {
   const [shopData,setShopdata]=useState({profileimage:''})
@@ -53,6 +55,7 @@ useEffect(()=>{
 }, [shopData]);
 
 
+
     const handleEdit=async()=>{
         const {profileimage,username,shopname,shopaddress}=shopData
         if(!username||!shopname||!shopaddress){
@@ -79,19 +82,20 @@ useEffect(()=>{
             try{
               const result =await editShopProfileAPI(reqBody,reqHeader)
               if(result.status === 200){
-                alert('successfully updated')
+                toast.success('Profile Successfully Updated')
 
     
     
               }else{
-                alert('error'+result.response.data)
+                toast.error('error'+result.response.data)
               }
     
             }catch(e){
-                alert(e)
+              toast.error(e.message)
             }
           }else{
-            console.log('not user');
+            toast.error('error')
+
           }
     
     
@@ -109,6 +113,7 @@ useEffect(()=>{
 
   return (
     <>  
+    <ToastContainer/>
     <div>
       <div className='d-flex align-items-center justify-content-center mt-2' >
           <div className="editimg" style={{position:'relative'}}>

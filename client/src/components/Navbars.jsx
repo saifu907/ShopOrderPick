@@ -102,8 +102,9 @@ function Navbars({setShoplogin}) {
             navigate('/')
 
           }, 2000)
+
         }else{
-            toast.error('User not Found')          
+          toast.error("User not Found") 
         }
       }catch(err){
         toast.error(`Could not login: error: ${err}`)
@@ -121,7 +122,8 @@ function Navbars({setShoplogin}) {
           const result =await registerAPI({username,email,password});
           console.log(result);
           if(result.status===200){
-            setUserdata({username:'',email:'',password:''})
+            resetForm()
+            
             setloggedIn(true)
             toast.success('User Registered Successfully')
           }else{
@@ -159,13 +161,10 @@ function Navbars({setShoplogin}) {
     if (loggedIn) {
       return(
       <>
-      <MDBRow tag="form">
-      <MDBCol >
       <MDBInput name="emailuser" required onChange={handleInputChange} value={userData.emailuser} className='mt-3'  label="email or username"  type="text" /> 
       <MDBInput name="password" required onChange={handleInputChange}  value={userData.password} className='mt-3' label="password"  type="password" />
-      <MDBBtn onClick={signIn}  className='w-100 p-2 mt-3 '>Sign In</MDBBtn>
-      </MDBCol>
-      </MDBRow >
+      <MDBBtn onClick={(e) => signIn(e)}  className='w-100 p-2 mt-3 '>Sign In</MDBBtn>
+      
       </>
       )
 
@@ -175,8 +174,7 @@ function Navbars({setShoplogin}) {
     else if (isShopOwner) {
       return (
         <>
-        <MDBRow tag="form">
-        <MDBCol >
+      
           <MDBInput name="username" required  onChange={handleInputChange} value={userData.username} className='mt-3'   label="enter username"  type="text" /> 
           <MDBInput name="email" required onChange={handleInputChange } value={userData.email} className='mt-3'  label="enter email"  type="text" /> 
           <MDBInput name="shopname" required onChange={handleInputChange} value={userData.shopname} label="Shop Name" type="text" className='mt-3' />
@@ -184,8 +182,6 @@ function Navbars({setShoplogin}) {
           <MDBInput name="password"  required onChange={handleInputChange}  value={userData.password} className='my-3' label="password"  type="password" />
 
           <MDBBtn onClick={registertoShop}  className='w-100 p-2 mb-3 '>Register</MDBBtn>
-          </MDBCol>
-      </MDBRow >
           {isShopOwner&&(
                       <p className='text-secondary'>User? <button  onClick={()=>setIsShopOwner(false)} className="btn btn-primary rounded-pill">Registor</button></p>)
         }
@@ -197,14 +193,12 @@ function Navbars({setShoplogin}) {
       return(
 
       <>
-       <MDBRow tag="form">
-       <MDBCol >
+       
           <MDBInput name="email" required onChange={handleInputChange} value={userData.email} className='mt-3'  label="enter email"  type="text" /> 
           <MDBInput name="username" required onChange={handleInputChange} value={userData.username} className='mt-3'   label="enter username"  type="text" /> 
           <MDBInput name="password" required onChange={handleInputChange}  value={userData.password} className='my-3' label="password"  type="password" />
           <MDBBtn onClick={register}  className='w-100 p-2 mb-3 '>Register</MDBBtn>
-          </MDBCol>
-          </MDBRow >
+          
           
           {!isShopOwner&&(
                       <p className='text-secondary'>ShopOwner? <button  onClick={()=>setIsShopOwner(true)}  className="btn btn-primary rounded-pill">Registor</button></p>)
