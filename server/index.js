@@ -23,8 +23,7 @@ pserver.use('/uploads',exp.static('./uploads'))
 
 
 
-const PORT = 'https://shoporderpick-backend.onrender.com'
-
+const PORT = process.env.PORT || 3000;
 pserver.listen(PORT,()=>{
     console.log(`pf:listening. on port:${PORT}`);
 })
