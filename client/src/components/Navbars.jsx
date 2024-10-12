@@ -50,9 +50,7 @@ function Navbars({setShoplogin}) {
     
   },[isloggedIn,isShopOwner])
   const handlelogout=() =>{
-    sessionStorage.removeItem("token")
-    sessionStorage.removeItem("username")
-    sessionStorage.removeItem("shopname")
+    sessionStorage.clear();
     setIsLoggedIn(false)
     toast.info(`You have been logged out`)
     navigate('/')
@@ -247,11 +245,6 @@ function Navbars({setShoplogin}) {
                 {renderFields()}
           
           </div>
-              
-                      
-      
-              
-
               
             </MDBModalBody>
             

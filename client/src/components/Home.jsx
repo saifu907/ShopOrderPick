@@ -1,17 +1,10 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
-
-
-import { useDispatch, useSelector } from 'react-redux'
-import { addtowishList } from '../features/whishList'
-import { Link, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import WishCart from './WishCart'
 import Sidebar from './Sidebar'
-
 import UserLanding from './UserLanding'
 import Shopadmin from './Shopadmin'
-import { registerAPI } from '../Services/allAPI'
-import Navbars from './Navbars'
 import Cart from './Cart'
 import Orders from './Orders'
 import Shoporder from './Shoporder'
@@ -26,7 +19,6 @@ function Home() {
     const [shoplogin, setShoplogin] = useState(false)
    
 
-  const dispatch=useDispatch()
   useEffect(()=>{
     const username = sessionStorage.getItem('username');
     const shopname = sessionStorage.getItem('shopname');

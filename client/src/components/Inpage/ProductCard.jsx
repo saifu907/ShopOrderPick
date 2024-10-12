@@ -19,15 +19,8 @@ function ProductCard({index, products}) {
     const navigate = useNavigate();
 
     const handleImage=(id,shopId)=>{
-        console.log('dd');
         navigate(`/product/${id}/${shopId}`)
       }
-
-
-
-
-
-
   return (
     <>
     
@@ -56,12 +49,12 @@ function ProductCard({index, products}) {
                         </MDBCardText>
                         <MDBCardText></MDBCardText>
 
-                        </div>
-                <div className='col-4 d-flex align-items-center justify-content-center hovers'>
+                    </div>
+                    <div className='col-4 d-flex align-items-center justify-content-center hovers'>
                     
                     <CartListButton products={products}/>
                     </div>
-                    </div>
+                </div>
             </MDBCardOverlay>
         </MDBCard>
     </div>

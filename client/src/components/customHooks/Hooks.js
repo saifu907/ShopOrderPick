@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getAllShopAPI, getAllShopProductsAPI } from '../../Services/allAPI';
+import { getAllShopAPI, getAllShopProductsAPI, getAproductAPI } from '../../Services/allAPI';
 
 
 export const useFetchShopProducts = (shopId) => {
@@ -46,4 +46,32 @@ useEffect(() => {
 }, [searchKey]);
 
 return shops;
+};
+
+export const useFetchProduct = (productId) => {
+  const [product, setProduct] = useState(null);
+  const [allProducts, setAllProducts] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+      const fetchProductDetails = async () => {
+          try {
+              const result = await getAproductAPI(productId);
+              if (result.status === 200) {
+                  const products = result.data;
+                  setAllProducts(products);
+                  const oneProduct = products.find((prod) => prod._id === productId);
+                  setProduct(oneProduct);
+              } else {
+                  setError('Error fetching product details');
+              }
+          } catch (err) {
+              setError('API call failed: ' + err.message);
+          } 
+      };
+
+      fetchProductDetails();
+  }, [productId]);
+
+  return { product, allProducts, error };
 };

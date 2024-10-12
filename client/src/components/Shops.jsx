@@ -6,19 +6,10 @@ import SearchBar from './Inpage/SearchBar';
 import { useFetchShops } from './customHooks/Hooks';
 function Shops() {
     const [searchKey, setSearchKey] = useState("")
-    
-    
-    
     const navigate = useNavigate();
-
     const shops = useFetchShops(searchKey);
-
-  
       const handleImg=(id) => {
-      navigate(`/shop/${id}`)
-        
-
-        
+      navigate(`/shop/${id}`) 
       }
   return (
     <div className=" my-3  ">
