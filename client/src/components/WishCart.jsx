@@ -15,6 +15,7 @@ import {
 import { removeFromWishlist } from '../features/whishList';
 import { addToCart } from '../features/cartSlice';
 import { Link } from 'react-router-dom';
+import { defaultProductImage } from '../assets/defaultImg';
 
 function WishCart() {
   
@@ -34,10 +35,7 @@ function WishCart() {
   return (
     <>
    <div className="row ps-3 m-0">
-    <h1>WishList{wishlistArray.length>0?`(${wishlistArray.length})`:null}</h1>
-    
-    
-     
+    <h1>WishList{wishlistArray.length>0?`(${wishlistArray.length})`:null}</h1> 
      {
      
        wishlistArray.length>0?wishlistArray.slice().reverse().map((product,index)=>(
@@ -51,7 +49,7 @@ function WishCart() {
 
                     </div>
        <MDBRipple  rippleColor='light' rippleTag='div' className='bg-image hover-overlay h-100'>
-         <MDBCardImage style={{height:'200px',objectFit:'fit'}} src={`${SERVER_URL}/uploads/${product.productimage}`} alt={product.label} fluid />
+         <MDBCardImage style={{height:'200px',objectFit:'fit'}} src={`${SERVER_URL}/uploads/${product.productimage}`} onError={(e) => e.target.src = defaultProductImage} alt={product.label} fluid />
          <a>
            <div className='mask' style={{backgroundColor:'rgba(251, 251, 251, 0.15)' }}></div>
          </a>

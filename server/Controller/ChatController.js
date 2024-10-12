@@ -7,8 +7,6 @@ exports.createChats=async(req,res)=>{
     
     
     const {senderId,reciverId}=req.body
-    console.log(senderId);
-    console.log(reciverId);
     const existingChat = await chat.findOne({
         members: { $all: [senderId, reciverId] } 
     });
@@ -20,7 +18,6 @@ exports.createChats=async(req,res)=>{
     const newConversation = new chat({
         members:[senderId,reciverId]
     })
-    console.log(newConversation);
     
     try{
         const newChat = await newConversation.save()
@@ -67,7 +64,6 @@ exports.getAllUserChats=async(req,res)=>{
         );
 
         }
-        console.log('Friends Profiles:', friendsProfile);
         
         res.status(200).json({Chats,userId,friendsProfile});
     
@@ -79,7 +75,6 @@ exports.createMessage=async(req,res)=>{
     
     
     const message = req.body
-    console.log(message);
     
     
     const newMessage = new conversation(message)

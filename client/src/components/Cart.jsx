@@ -6,10 +6,10 @@ import {useSelector,useDispatch} from 'react-redux'
 import { Button} from 'react-bootstrap'
 import { SERVER_URL } from '../Services/server_url'
 import { emptyCart, removeFromCart,updateCart } from '../features/cartSlice'
-import { addtoOrderList } from '../features/orderSlice'
 import { addOrderAPI } from '../Services/allAPI'
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+import { defaultProductImage } from '../assets/defaultImg'
 
 
 
@@ -149,7 +149,7 @@ function Cart() {
           {
             cartArray.slice().reverse().map((product,index)=>(
               <tr key={index} className=''>
-                <td className=''><img height={'120px'} width={'100px'} src={`${SERVER_URL}/uploads/${product.productimage}`} alt="" /></td>
+                <td className=''><img height={'120px'} width={'100px'} src={`${SERVER_URL}/uploads/${product.productimage}`} onError={(e) => e.target.src = defaultProductImage} alt="" /></td>
                 <td className='text-center align-middle'>{product.label}</td>
                 <td className='text-center align-middle'>Rs {product.price}</td>
                 <td className='text-center align-middle'><div className="rounded-pill bg-secondary d-flex align-items-center justify-content-center "><i class="fa-solid fa-minus btn p-2 m-0" onClick={() => decreaseQuantity(product._id)}></i>{product.quantity||1}<i class="fa-solid fa-plus btn p-2 " onClick={() => increaseQuantity(product._id)} ></i></div></td>

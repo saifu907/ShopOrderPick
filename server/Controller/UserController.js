@@ -11,7 +11,6 @@ exports.register =async (req,res)=>{
           const existingShop =await shops.findOne({
             $or: [{ email }, { username }],
           })
-        console.log(existingUser||existingShop)
         if (existingUser){
             res.status(406).json('user already exists')
         }else{
@@ -215,7 +214,6 @@ exports.editshopprofile=async(req,res)=>{
 
     const {username,shopname,shopaddress}=req.body
     const uploadimage = req.file ? req.file.filename : null
-    console.log(uploadimage);
     
     const shopId=req.payload
     updateData={ username, shopname, shopaddress }
@@ -227,7 +225,6 @@ exports.editshopprofile=async(req,res)=>{
     try{
         const existingUser = await users.findOne({ username }); 
     if ( existingUser) {
-        console.log('ss');
         
       return res.status(400).json({ message: 'Username or Shop Name already exists' });
     }

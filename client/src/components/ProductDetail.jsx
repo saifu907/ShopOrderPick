@@ -3,15 +3,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 import {  getAproductAPI } from '../Services/allAPI';
 import { SERVER_URL } from '../Services/server_url';
 import {
-    MDBCard,
-    MDBCardTitle,
-    MDBCardText,
-    MDBCardOverlay,
-    MDBCardImage,MDBBtn
+    MDBBtn
   } from 'mdb-react-ui-kit';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../features/cartSlice';
 import { addtowishList } from '../features/whishList';
+import { defaultProductImage } from '../assets/defaultImg';
+import ProductCard from './Inpage/ProductCard';
+import CartListButton from './Inpage/CartListButton';
+import WishListButton from './Inpage/WishListButton';
 function ProductDetail() {
   const navigate = useNavigate();
     
@@ -70,10 +70,7 @@ const fetchProductDetails = async () => {
 
       }, [productId]);
 
-      const handleImage=(id,shopId)=>{
-        navigate(`/product/${id}/${shopId}`)
-    
-      }
+  
 
       
       
@@ -90,18 +87,22 @@ const fetchProductDetails = async () => {
     
     <div className='row m-0'>
         <div className='col-sm-6 col-12 '>
-            <img src={`${SERVER_URL}/uploads/${product?.productimage}`} style={{objectFit:'contain',width:'100%'}}  alt="" />
+            <img src={`${SERVER_URL}/uploads/${product?.productimage}`} style={{objectFit:'contain',width:'100%'}}  alt=""   onError={(e) => e.target.src = defaultProductImage}/>
     
         </div>
         <div className='col-sm-6 mt-5 d-flex flex-column gap-3'>
             <h3>{product?.label}</h3>
             <h3>Rs. {product?.price}</h3>
+            <CartListButton products={product}/>
+            <WishListButton products={product}/>
     
     <div className="d-flex gap-2">
+  
+      
     
                 <MDBBtn  onClick={()=>handleAddToCart(product)}  className={`${cart.some(item => item._id === product._id) ? 'bg-light text-dark' : 'bg-dark text-light'} w-100 m-0  p-3`}>{cart.some(item => item._id === product._id) ?<div><i class="fa-solid fa-check"> Added to Cart </i></div>: <div> <i class="fa-solid fa-cart-shopping"></i> Add to Cart </div>}</MDBBtn>
     
-                <MDBBtn style={{ width: '50px', height: '50px' }}  onClick={()=>handleAddToWishlist(product)} className={` bg-transparent shadow-none border rounded-circle d-flex align-items-center justify-content-center ${wishlist.some(item => item._id === product._id) ? ' text-danger' : ' text-info border-2 '}`}  color=''><i className={ ` text-info `} class="fa-solid fa-heart fa-2xl" ></i></MDBBtn>
+                <MDBBtn style={{ width: '50px', height: '50px' }}  onClick={()=>handleAddToWishlist(product)} className={` bg-transparent shadow-none border rounded-circle d-flex align-items-center justify-content-center wishlist ${wishlist.some(item => item._id === product._id) ? ' text-danger' : ' text-info border-2 '}`}  color=''><i className={ ` text-info `} class="fa-solid fa-heart fa-2xl" ></i></MDBBtn>
     
     
     </div>
@@ -130,41 +131,8 @@ const fetchProductDetails = async () => {
         <h3 className='p-3'>Explore Shop</h3>
     {allProduct.length>0?allProduct.slice().reverse().map((products,index)=>(
     
-                  <div className="col-sm-4 col-10  p-2 " key={index}>
-                    <MDBCard background='dark' className='text-dark overflow-hidden cards' style={{height:'250px'}} >
-    
-    
-                            <MDBCardImage className='cardimg' onClick={()=>handleImage(products._id,products.shopid)}
-    
-                            src={`${SERVER_URL}/uploads/${products.productimage}`} alt='...' />
-    
-    
-    
-    
-                          <MDBCardOverlay className=' d-flex flex-column justify-content-end p-0 m-0  overlay' >
-                          <div className='position-absolute fixed-top d-flex  justify-content-end align-items-start'>
-                          <MDBBtn onClick={()=>handleAddToWishlist(products)} className={`bg-transparent hovers ${wishlist.some(item => item._id === products._id) ? 'text-danger' : 'text-light'}`}  color=''>
-                            <i className={`bg-transparent hovers `} class="fa-solid fa-heart fa-2xl"></i>
-                            </MDBBtn>
-    
-                          </div>
-                            <div className="row cardallcontent px-2">
-                              <div className=" col-8">
-                                <MDBCardTitle className=''>{products.label}</MDBCardTitle>
-                                <MDBCardText className='text-truncate col-5'>
-                                {products.caption}
-                                </MDBCardText>
-                                <MDBCardText></MDBCardText>
-    
-                              </div>
-                              <div className='col-4 d-flex align-items-center justify-content-center hovers'>
-                              <MDBBtn onClick={()=>handleAddToCart(products)}  className={`${cart.some(item => item._id === products._id) ? 'text-danger' : 'text-light'}`} color=''><i class="fa-solid fa-cart-shopping "></i></MDBBtn>
-    
-                              </div>
-                            </div>
-                          </MDBCardOverlay>
-                        </MDBCard>
-                  </div>
+    <ProductCard key={index} products={products}  />
+
     
     
     
