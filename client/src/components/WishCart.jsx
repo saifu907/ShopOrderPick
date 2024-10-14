@@ -1,7 +1,6 @@
 
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Sidebar from './Sidebar'
 import { SERVER_URL } from '../Services/server_url'
 import {
   MDBCard,

@@ -3,7 +3,6 @@ import {
     MDBCard,
     MDBCardTitle,
     MDBCardText,
-    MDBCardOverlay,
     MDBCardImage,
     MDBCardBody,
     MDBIcon,
@@ -15,13 +14,12 @@ import {
   MDBModalBody,
   MDBModalFooter,
   MDBTextArea,
-  MDBInput,
-  MDBFile,MDBInputGroup,
+  MDBInput,MDBInputGroup,
     
     MDBBtn,
     MDBRipple
   } from 'mdb-react-ui-kit';
-  import { ToastContainer, toast } from 'react-toastify';
+  import {  toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 import { addProductAPI, deleteProductAPI, getShopProductAPI } from '../Services/allAPI';
 import { SERVER_URL } from '../Services/server_url';

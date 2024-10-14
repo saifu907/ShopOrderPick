@@ -1,19 +1,30 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import WishCart from './WishCart'
+// import WishCart from './WishCart'
 import Sidebar from './Sidebar'
-import UserLanding from './UserLanding'
-import Shopadmin from './Shopadmin'
-import Cart from './Cart'
-import Orders from './Orders'
-import Shoporder from './Shoporder'
-import ProductDetail from './ProductDetail'
-import Profile from './Profile'
-import ShopProducts from './ShopProducts'
-import Chats from './Chats'
-import { ToastContainer, toast } from 'react-toastify';
+// import UserLanding from './UserLanding'
+// import Shopadmin from './Shopadmin'
+// import Cart from './Cart'
+// import Orders from './Orders'
+// import Shoporder from './Shoporder'
+// import ProductDetail from './ProductDetail'
+// import Profile from './Profile'
+// import ShopProducts from './ShopProducts'
+// import Chats from './Chats'
   import 'react-toastify/dist/ReactToastify.css';
+
+
+  const WishCart = React.lazy(() => import('./WishCart'));
+const UserLanding = React.lazy(() => import('./UserLanding'));
+const Shopadmin = React.lazy(() => import('./Shopadmin'));
+const Cart = React.lazy(() => import('./Cart'));
+const Orders = React.lazy(() => import('./Orders'));
+const Shoporder = React.lazy(() => import('./Shoporder'));
+const ProductDetail = React.lazy(() => import('./ProductDetail'));
+const Profile = React.lazy(() => import('./Profile'));
+const ShopProducts = React.lazy(() => import('./ShopProducts'));
+const Chats = React.lazy(() => import('./Chats'));
 function Home() {
 
     const [shoplogin, setShoplogin] = useState(false)
@@ -45,7 +56,7 @@ function Home() {
     </div>
 <div className="col-sm-9 col-10 m-0 p-0">
           
-
+<Suspense fallback={<div>Loading...</div>}>
       <Routes>
                           <Route path="/" element={shoplogin ? <Shopadmin />:<UserLanding />} />
                           
@@ -61,6 +72,7 @@ function Home() {
                           <Route path="/chats/:shopId" element={<Chats/>} />
                       
       </Routes>
+      </Suspense>
   
 </div>
 

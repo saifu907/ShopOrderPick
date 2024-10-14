@@ -30,7 +30,8 @@ function ProductCard({index, products}) {
 
             <MDBCardImage className='cardimg' onClick={()=>handleImage(products._id,products.shopid)}
 
-                src={`${SERVER_URL}/uploads/${products.productimage}`} alt='...'  onError={(e) => e.target.src = defaultProductImage} />
+                src={`${SERVER_URL}/uploads/${products.productimage}`} alt='...'  onError={(e) => e.target.src = defaultProductImage} loading="lazy"/>
+
 
 
 

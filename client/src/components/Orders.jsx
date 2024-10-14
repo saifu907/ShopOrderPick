@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { SERVER_URL } from '../Services/server_url'
 import { getOrderDataAPI } from '../Services/allAPI'
 
 function Orders() {

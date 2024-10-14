@@ -15,7 +15,6 @@ import { defaultProductImage } from '../assets/defaultImg'
 
 function Cart() {
   
-  const [quantity,setQuantity]=useState(1)
 
   
   const cartArray=useSelector((state)=>state.cartReducer)

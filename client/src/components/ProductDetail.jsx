@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
-import {  getAproductAPI } from '../Services/allAPI';
+import React from 'react'
+import { useParams } from 'react-router-dom';
 import { SERVER_URL } from '../Services/server_url';
 import {
     MDBBtn
@@ -10,8 +9,6 @@ import { addToCart } from '../features/cartSlice';
 import { addtowishList } from '../features/whishList';
 import { defaultProductImage } from '../assets/defaultImg';
 import ProductCard from './Inpage/ProductCard';
-import CartListButton from './Inpage/CartListButton';
-import WishListButton from './Inpage/WishListButton';
 import { useFetchProduct } from './customHooks/Hooks';
 function ProductDetail() {
     const { productId } = useParams();
@@ -98,7 +95,7 @@ const { product, allProducts, error } = useFetchProduct(productId);
     
     
     
-                )):null
+                )): <h1>Empty</h1>
                 }
     </div>
 </div>

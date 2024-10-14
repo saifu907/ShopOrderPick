@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import { MDBBadge, MDBIcon,MDBBtn,
+import { useNavigate } from 'react-router-dom'
+import { MDBBtn,
   MDBModal,
   MDBModalDialog,
   MDBModalContent,
-  MDBModalHeader,
-  MDBModalTitle,
   MDBModalBody,
   MDBInput,
-  MDBModalFooter,MDBValidation,
-  MDBValidationItem, MDBRow,MDBCol} from 'mdb-react-ui-kit';
+  } from 'mdb-react-ui-kit';
   import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 import { loginAPI, registerAPI, registerShopAPI } from '../Services/allAPI';

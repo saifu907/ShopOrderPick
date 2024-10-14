@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import { MDBBadge } from 'mdb-react-ui-kit';
 import { useSelector } from 'react-redux';
 import Navbars from './Navbars';
 import NavSideLink from './Inpage/NavSideLink';
