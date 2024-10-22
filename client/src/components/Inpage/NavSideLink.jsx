@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { MDBBadge } from 'mdb-react-ui-kit';
 
 function NavSideLink({ to, icon, label, badgeContent }) {
   return (
@@ -10,7 +11,7 @@ function NavSideLink({ to, icon, label, badgeContent }) {
       <div className="d-flex align-items-center p-2">
         <i className={icon}></i>
         {badgeContent && (
-          <MDBBadge   color='danger' notification pill>
+          <MDBBadge style={{ padding: '2px 5px' }}  color='danger' notification pill>
             {badgeContent}
           </MDBBadge>
         )}

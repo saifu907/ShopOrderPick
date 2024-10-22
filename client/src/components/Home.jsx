@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React, { lazy, Suspense } from 'react'
 import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 // import WishCart from './WishCart'
@@ -15,16 +15,16 @@ import Sidebar from './Sidebar'
   import 'react-toastify/dist/ReactToastify.css';
 
 
-  const WishCart = React.lazy(() => import('./WishCart'));
-const UserLanding = React.lazy(() => import('./UserLanding'));
-const Shopadmin = React.lazy(() => import('./Shopadmin'));
-const Cart = React.lazy(() => import('./Cart'));
-const Orders = React.lazy(() => import('./Orders'));
-const Shoporder = React.lazy(() => import('./Shoporder'));
-const ProductDetail = React.lazy(() => import('./ProductDetail'));
-const Profile = React.lazy(() => import('./Profile'));
-const ShopProducts = React.lazy(() => import('./ShopProducts'));
-const Chats = React.lazy(() => import('./Chats'));
+  const WishCart =lazy(() => import('./WishCart'));
+const UserLanding = lazy(() => import('./UserLanding'));
+const Shopadmin = lazy(() => import('./Shopadmin'));
+const Cart = lazy(() => import('./Cart'));
+const Orders = lazy(() => import('./Orders'));
+const Shoporder = lazy(() => import('./Shoporder'));
+const ProductDetail = lazy(() => import('./ProductDetail'));
+const Profile = lazy(() => import('./Profile'));
+const ShopProducts = lazy(() => import('./ShopProducts'));
+const Chats = lazy(() => import('./Chats'));
 function Home() {
 
     const [shoplogin, setShoplogin] = useState(false)
@@ -51,6 +51,7 @@ function Home() {
 
       <div className='row m-0'>
     <div className="col-sm-3 col-2  p-0 m-0">
+      
       
     <Sidebar setShoplogin={setShoplogin} shoplogin={shoplogin} />
     </div>

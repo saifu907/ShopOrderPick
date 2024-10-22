@@ -4,11 +4,9 @@ import {
     MDBCardTitle,
     MDBCardText,
     MDBCardOverlay,
-    MDBCardImage,MDBBtn
+    MDBCardImage
   } from 'mdb-react-ui-kit';
-import { useDispatch, useSelector } from 'react-redux';
 import { defaultProductImage } from '../../assets/defaultImg';
-import { addToCart } from '../../features/cartSlice';
 import { SERVER_URL } from '../../Services/server_url';
 import { useNavigate } from 'react-router-dom';
 import WishListButton from './WishListButton';
@@ -30,7 +28,10 @@ function ProductCard({index, products}) {
 
             <MDBCardImage className='cardimg' onClick={()=>handleImage(products._id,products.shopid)}
 
-                src={`${SERVER_URL}/uploads/${products.productimage}`} alt='...'  onError={(e) => e.target.src = defaultProductImage} loading="lazy"/>
+                src={`${SERVER_URL}/uploads/${products.productimage}`}
+                
+                alt='...'  onError={(e) => e.target.src = defaultProductImage} loading="lazy"/>
+                
 
 
 

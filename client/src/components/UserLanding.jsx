@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import {
   MDBTabs,
   MDBTabsItem,
@@ -6,8 +6,10 @@ import {
   MDBTabsContent,
   MDBTabsPane
 } from 'mdb-react-ui-kit';
-import AllProducts from './AllProducts';
-import Shops from './Shops';
+
+const AllProducts = lazy(() => import('./AllProducts'));
+const Shops = lazy(() => import('./Shops'));
+
 function UserLanding() {
   const [basicActive, setBasicActive] = useState('tab1');
 
@@ -15,13 +17,12 @@ function UserLanding() {
     if (value === basicActive) {
       return;
     }
-
     setBasicActive(value);
   };
 
   return (
-<>
-    <MDBTabs className=' d-flex justify-content-center align-items-center '>
+    <>
+      <MDBTabs className='d-flex justify-content-center align-items-center'>
         <MDBTabsItem>
           <MDBTabsLink onClick={() => handleBasicClick('tab1')} active={basicActive === 'tab1'}>
             Shops
@@ -32,15 +33,24 @@ function UserLanding() {
             Explore
           </MDBTabsLink>
         </MDBTabsItem>
-        
       </MDBTabs>
 
-      <MDBTabsContent >
-        <MDBTabsPane open={basicActive === 'tab1'}><Shops/></MDBTabsPane>
-        <MDBTabsPane open={basicActive === 'tab2'}><AllProducts/></MDBTabsPane>
+      <MDBTabsContent>
+        <Suspense fallback={<div>Loading...</div>}>
+          {basicActive === 'tab1' && (
+            <MDBTabsPane open={basicActive === 'tab1'}>
+              <Shops />
+            </MDBTabsPane>
+          )}
+          {basicActive === 'tab2' && (
+            <MDBTabsPane open={basicActive === 'tab2'}>
+              <AllProducts />
+            </MDBTabsPane>
+          )}
+        </Suspense>
       </MDBTabsContent>
     </>
-  )
+  );
 }
 
-export default UserLanding
+export default UserLanding;

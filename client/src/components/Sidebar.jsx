@@ -1,19 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import Navbars from './Navbars';
 import NavSideLink from './Inpage/NavSideLink';
+
+const Navbars=lazy(()=>import('./Navbars'))
 
 
 function Sidebar({ setShoplogin, shoplogin }) {
   const wishlist = useSelector((state) => state.whishListReducer);
   const cart = useSelector((state) => state.cartReducer);
+
+  const [navbarsLoaded, setNavbarsLoaded] = useState(false);
+  
   useEffect(()=>{
     const username = sessionStorage.getItem('username');
     const shopname = sessionStorage.getItem('shopname');
-  
-    console.log('Username:', username);
-    console.log('Shopname:', shopname);
-  
+
     if (username) {
       setShoplogin(false);  
     } else if (shopname) {
@@ -55,7 +56,19 @@ function Sidebar({ setShoplogin, shoplogin }) {
         </ul>
       </div>
       <div className="mb-5 pb-5">
-        <Navbars setShoplogin={setShoplogin} />
+      {!navbarsLoaded ? (
+          <div  className="d-flex align-items-center justify-content-center btn bg-dark text-light shadow-5 mx-3 gap-2"  onClick={() => setNavbarsLoaded(true)}>
+            <i className="fa-solid fa-user"></i><span className=' d-none d-sm-inline'> Login</span>
+          </div>
+        ) : (
+          
+          <div className="d-flex align-items-center justify-content-center btn bg-dark text-light shadow-5 mx-3 gap-2">
+          <Suspense fallback={<div>Loading...</div>}>
+            <Navbars setShoplogin={setShoplogin} />
+          </Suspense>
+          </div>
+        )}
+
       </div>
     </div>
   );

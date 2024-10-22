@@ -212,13 +212,13 @@ function Navbars({setShoplogin}) {
   return (
     <>
       <ToastContainer />
-          <div className="d-flex align-items-center justify-content-center mx-3">
+          
             
                 {isloggedIn?
-                  <div className="d-flex align-items-center justify-content-center btn bg-dark text-light shadow-5 " onClick={handlelogout}>
-                    <i class="fa-solid fa-user"></i><span className='d-none d-sm-inline'> Logout</span></div>:<div className="d-flex align-items-center justify-content-center btn bg-dark text-light shadow-5 w-100 gap-2" onClick={toggleOpen}><i class="fa-solid fa-user"></i> <span className='d-none d-sm-inline'>Login</span></div>
+                  <div className="" onClick={handlelogout}>
+                    <i class="fa-solid fa-user"></i><span className='d-none d-sm-inline'> Logout</span></div>:<div className="" onClick={toggleOpen}><i class="fa-solid fa-user"></i> <span className='d-none d-sm-inline'>Login</span></div>
                   }
-          </div>
+    
 
           
 

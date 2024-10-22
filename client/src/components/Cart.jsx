@@ -129,7 +129,7 @@ function Cart() {
     <div className="ps-3 table-responsive">
       <div className="d-flex align-items-center justify-content-between">
         <h1>Cart{cartArray.length>0?`(${cartArray.length})`:null}</h1>
-        <button onClick={()=>dispatch(emptyCart())} className='nav-link me-5'>Clear all</button>
+        <button onClick={()=>dispatch(emptyCart())} className='  btn '>Clear all</button>
       </div>
 
         <table className='table'>

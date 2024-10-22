@@ -181,6 +181,7 @@ exports.updateStatus=async(req,res)=>{
 }
 
 
+
 exports.getshops=async(req,res)=>{
     const searchKey=req.query.search    
     query={

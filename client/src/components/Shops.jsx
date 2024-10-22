@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { SERVER_URL } from '../Services/server_url';
 import { useNavigate } from 'react-router-dom';
-import loadingImage from '../assets/loading.webp';
-import defaultShopImage from '../assets/user.webp';
-import imagenotfound from '../assets/imagenotfound.webp';
 import SearchBar from './Inpage/SearchBar';
 import { useFetchShops } from './customHooks/Hooks';
+import ShopImage from './Inpage/ShopImage';
 
 function Shops() {
   const [searchKey, setSearchKey] = useState("");
@@ -41,25 +38,6 @@ function Shops() {
   );
 }
 
-function ShopImage({ shop, onClick }) {
-  const [isLoaded, setIsLoaded] = useState(false);
 
-  const imageSrc = shop.profileimage
-    ? `${SERVER_URL}/uploads/${shop.profileimage}`
-    : defaultShopImage;
-
-  return (
-    <img
-      src={isLoaded ? imageSrc : loadingImage}
-      alt={shop.shopname}
-      onClick={onClick}
-      onError={(e) => (e.target.src = imagenotfound)} // Fallback to error image
-      className="rounded-circle mb-3 shadow border border-1"
-      style={{ width: '200px', height: '200px' }}
-      onLoad={() => setIsLoaded(true)} // Switch from loading to actual image on load
-      loading="lazy" // Enable lazy loading for better performance
-    />
-  );
-}
 
 export default Shops;

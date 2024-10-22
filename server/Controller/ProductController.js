@@ -1,34 +1,55 @@
 const products =require('../Model/productModel')
 const shops = require('../Model/shopModel')
+const cloudinary = require('cloudinary').v2;
 
-exports.addProducts =async(req,res)=>{
-    const {label,caption,price}=req.body
-    
-    const productimage=req.file.filename
-    const shopid=req.payload
-    try{
-        const existingproduct=await products.findOne({label})
-        if(existingproduct){
+cloudinary.config({
+  cloud_name: 'dzsg5tijx',
+  api_key: '366682375122835',
+  api_secret: 'ajBHTQBZJD2aJT3ufIgdLrx7ZrE',
+});
 
-        res.status(401).json('product already exists')
-        }else{
-
-            const newproduct=await products({
-                label,caption,productimage,price,shopid
-
-            })
-            await newproduct.save()
-            res.status(200).json(newproduct)
-        }
-
-    }catch(e){
-    res.status(402).json(e)
-
-
+exports.addProducts = async (req, res) => {
+    const { label, caption, price } = req.body;
+    const shopid = req.payload; // Assuming req.payload contains shopid
+  
+    try {
+      // Upload image to Cloudinary using buffer from Multer's memory storage
+      const result = await new Promise((resolve, reject) => {
+        const uploadStream = cloudinary.uploader.upload_stream(
+          { folder: 'products' }, // Upload to 'products' folder in Cloudinary
+          (error, result) => {
+            if (error) reject(error);
+            resolve(result); // Resolve with the Cloudinary upload result
+          }
+        );
+        // Pipe the image buffer from Multer's memory storage to Cloudinary
+        uploadStream.end(req.file.buffer);
+      });
+  
+      const productImageURL = result.secure_url; // Cloudinary image URL
+  
+      // Check if the product already exists
+      const existingProduct = await products.findOne({ label });
+      if (existingProduct) {
+        return res.status(401).json('Product already exists');
+      }
+  
+      // Create new product and save it to the database
+      const newProduct = new products({
+        label,
+        caption,
+        productimage: productImageURL,  // Store the Cloudinary image URL
+        price,
+        shopid,
+      });
+  
+      await newProduct.save();
+      res.status(200).json(newProduct);
+  
+    } catch (error) {
+      res.status(500).json({ message: 'Error adding product', error });
     }
-
-}
-
+  };
 
 exports.getAllProducts=async(req,res)=>{
     const searchKey=req.query.search

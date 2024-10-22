@@ -1,26 +1,22 @@
-const multer= require('multer')
-const storage=multer.diskStorage({
-    destination:(req,file,callback)=>{
-        callback(null,'./uploads')
+const multer = require('multer');
 
-    },
-    filename:(req,file,callback)=>{
-        const filename=`image${Date.now()}-${file.originalname}`
-        callback(null,filename)
-    }
+// Multer memory storage configuration
+const storage = multer.memoryStorage(); // Store files in memory instead of disk
 
-})
-const fileFilter=(req,file,callback)=>{
-    if(file.mimetype==='image/png'||file.mimetype==='image/jpeg'||file.mimetype==='image/jpg'){
-        callback(null,true)
-    }else{
-        callback(null,false)
-        return callback(new Error('upload failed...png,jpg,jpeg only'))
-    }
-}
+// File filter to allow only specific image types (PNG, JPEG, JPG)
+const fileFilter = (req, file, callback) => {
+  if (file.mimetype === 'image/png' || file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg') {
+    callback(null, true); // Accept the file
+  } else {
+    callback(null, false); // Reject the file
+    return callback(new Error('Upload failed... only PNG, JPG, and JPEG formats are allowed'));
+  }
+};
 
-const multerConfig=multer({
-    storage,fileFilter
-})
+// Multer configuration
+const multerConfig = multer({
+  storage, // Use memory storage instead of disk
+  fileFilter, // Apply the file filter
+});
 
-module.exports =multerConfig
+module.exports = multerConfig;
